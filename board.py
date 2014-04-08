@@ -25,24 +25,6 @@ class board:
 
 	def gameover(self):
 		return not (self.canMoveLeft() or self.canMoveRight() or self.canMoveUp() or self.canMoveDown())
-		'''
-		return (not self.canMoveHoriz()) and (not self.canMoveVert())
-		if self.__numempty != 0:
-			return False
-		for i in range(4):
-			for j in range(4):
-				if i == 3 and j == 3:
-					continue
-				elif i == 3:
-					if self.__arr[4*i+j] == self.__arr[4*i+j+1]:
-						return False
-				elif j == 3:
-					if self.__arr[4*i+j] == self.__arr[4*(i+1)+j]:
-						return False
-				elif self.__arr[4*i+j] == self.__arr[4*i+j+1] or self.__arr[4*i+j] == self.__arr[4*(i+1)+j]:
-						return False
-		return True
-		'''
 	
 	def canMoveRight(self):
 		for i in range(4):
@@ -229,12 +211,10 @@ class board:
 					i -= 1
 		self.spawn()
 		return self
+	
+	def toList(self):
+		return self.__arr
 
 	def __str__(self):
-		#s = " ".join(str(x) for x in self.__arr[0:4]) + "\n"
-		#s += " ".join(str(x) for x in self.__arr[4:8]) + "\n"
-		#s += " ".join(str(x) for x in self.__arr[8:12]) + "\n"
-		#s += " ".join(str(x) for x in self.__arr[12:16])
 		s = "%*d %*d %*d %*d \n%*d %*d %*d %*d \n%*d %*d %*d %*d \n%*d %*d %*d %*d" % tuple([item for list in zip([len(str(self.__max))]*16,self.__arr) for item in list])
 		return s
-			
